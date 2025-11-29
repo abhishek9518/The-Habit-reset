@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Webpage</title>
+    <style>
+        /* Full-page animated gradient background */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(-45deg, #ff6ec4, #7873f5, #42e695, #3bb2b8);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #ffd700;
+        }
+
+        /* Top Buddha Image */
+        .top-image {
+            width: 100%;
+            height: 200px;
+            background-image: url('https://positive.b-cdn.net/wp-content/uploads/2022/01/Lauren-Fogel-Mersy-nd-1.jpg');
+            background-size: cover;
+            background-position: center;
+            margin-top: 60px;
+        }
+
+        /* Quote */
+        .quote {
+            margin: 20px 0;
+            font-size: 2em;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .quote-hr {
+            width: 60%;
+            border: 1px solid rgba(255,255,255,0.7);
+            margin: 20px auto;
+        }
+
+        /* Transparent Content Box */
+        .content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px 80px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0 0 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 0;
+        }
+
+        /* Introduction Section */
+        .int {
+            text-align: left;
+            max-width: 900px;
+            margin: 20px auto;
+            font-size:200%;
+            line-height: 1.6;
+            animation: colorChange 6s infinite;
+        }
+
+        @keyframes colorChange {
+            0% { color: lemonchiffon; }
+            20% { color: lightgreen; }
+            40% { color: deepskyblue; }
+            60% { color: orange; }
+            80% { color: violet; }
+            100% { color: lemonchiffon; }
+        }
+
+        /* TASK BOX STYLE */
+        .task-box {
+            width: 60%;
+            background: rgba(255,255,255,0.15);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            margin: 30px 0;
+            color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .task-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .task-input, .task-days {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: none;
+            font-size: 1em;
+        }
+
+        .task-button {
+            width: 100%;
+            padding: 12px;
+            background: gold;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .solution-preview {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* ------------------------------------- */
+        /* ✅ INSERTED PROGRESS BAR CSS HERE */
+        /* ------------------------------------- */
+
+        .progress-box {
+            width: 60%;
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            margin: 20px 0;
+            color: white;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .progress-label {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 25px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 60%;
+            background: gold;
+            border-radius: 20px;
+        }
+
+        /* TIPS SECTION */
+.tips-section {
+    width: 80%;
+    margin: 40px auto;
+    color: white;
+    text-align: center;
+}
+
+.tips-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px black;
+}
+
+.tips-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.tip-card {
+    width: 30%;
+    background: rgba(255,255,255,0.2);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.tip-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+/* BADGE SECTION */
+.badge-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.badge {
+    padding: 20px 30px;
+    background: gold;
+    color: black;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    transition: 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Top Navigation Bar -->
+    <div class="navbar">
+        <a href="http://127.0.0.1:5500/projectccourse.html">Home</a>
+        <a href="http://127.0.0.1:5500/loginpage.html">Login</a>
+        <a href="http://127.0.0.1:5500/Registrationform.html">Registration</a>
+        <a href="#">Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Notification</a>
+    </div>
+
+    <!-- Top Buddha Image -->
+    <div class="top-image"></div>
+
+    <!-- Quote -->
+    <div class="quote">NEVER EVER GIVE UP</div>
+
+    <hr class="quote-hr">
+
+    <div class="content">
+        <h1>Welcome!</h1>
+        <br><h1>🙏</h1>
+    </div>
+
+    <div class="int">
+        <h1>Tired of the 'Start-Stop' Cycle? We Get It.</h1>
+        <p>
+            You've tried to quit before. Maybe you lasted a few days, maybe a few weeks, 
+            but somehow, that old habit always crept back in...
+        </p>
+    </div>
+
+    <!-- Task Box -->
+    <div class="task-box">
+        <h2>Tell Us Your Problem</h2>
+        <input type="text" class="task-input" placeholder="Describe your habit/problem...">
+        <select class="task-days">
+            <option>Select number of days</option>
+            <option>7 Days</option>
+            <option>14 Days</option>
+            <option>21 Days</option>
+            <option>30 Days</option>
+        </select>
+        <div class="task-button">Get Solution</div>
+
+        <div class="solution-preview">Your solution will appear here.</div>
+    </div>
+
+    <!-- PROGRESS BAR SECTION -->
+    <div class="progress-box">
+        <div class="progress-label">Your Task Completion: 60%</div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- NEW TIME TABLE SECTION -->
+    <div class="task-box">
+        <h2>Create Your Daily Time Table</h2>
+
+        <select class="task-days">
+            <option>Select time duration</option>
+            <option>Morning Schedule</option>
+            <option>Afternoon Schedule</option>
+            <option>Evening Schedule</option>
+            <option>Full Day Schedule</option>
+        </select>
+
+        <input type="text" class="task-input" placeholder="Enter your first task...">
+        <input type="text" class="task-input" placeholder="Enter your second task...">
+        <input type="text" class="task-input" placeholder="Enter your third task...">
+        <input type="text" class="task-input" placeholder="Enter extra tasks...">
+
+        <div class="task-button">Generate Time Table</div>
+
+        <div class="solution-preview">Your generated time table will appear here.</div>
+    </div>
+    <!-- HABIT IMPROVEMENT TIPS SECTION -->
+<div class="tips-section">
+    <h1 class="tips-title">Helpful Tips to Break Bad Habits</h1>
+
+    <div class="tips-container">
+        <div class="tip-card">
+            <h3>📌 Start Small</h3>
+            <p>Small daily improvements lead to big long-term results.</p>
+        </div>
+
+        <div class="tip-card">
+            <h3>📌 Identify Triggers</h3>
+            <p>Find out what starts your habit—stress, boredom, or environment.</p>
+        </div>
+
+        <div class="tip-card">
+            <h3>📌 Replace the Habit</h3>
+            <p>Don’t just stop a habit—replace it with a positive one.</p>
+        </div>
+    </div>
+</div>
+<!-- ACHIEVEMENT BADGES -->
+<div class="badge-section">
+    <h1 class="tips-title">Earn Your Achievement Badges</h1>
+
+    <div class="badge-container">
+        <div class="badge">🔥 7 Days Streak</div>
+        <div class="badge">🌟 Habit Broken</div>
+        <div class="badge">💪 Strong Mindset</div>
+    </div>
+</div>
+<!-- ADD AFTER YOUR LAST TASK-BOX (PASTE THIS PART) -->
+    
+<!-- 🔥 STREAK / TIMER COUNTER SECTION -->
+<div class="streak-box">
+    <h2>Your Habit Streak</h2>
+    <p class="streak-label">You have stayed away from your bad habit for:</p>
+    <div class="streak-timer" id="streakTimer">00 Days : 00 Hours : 00 Minutes : 00 Seconds</div>
+
+    <button class="streak-btn" onclick="startStreak()">Start Counting</button>
+</div>
+
+<!-- 🔥 AUDIO MOTIVATION BUTTON -->
+<div class="audio-box">
+    <h2>Need Instant Motivation?</h2>
+    <button class="audio-btn" onclick="playMotivation()">Play Motivation Sound 🔔</button>
+
+    <audio id="motivationAudio">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2561/2561-preview.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+
+<!-- ADD THIS CSS INSIDE <style> SECTION -->
+<style>
+
+.streak-box, .audio-box {
+    width: 60%;
+    background: rgba(255,255,255,0.15);
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    margin: 30px 0;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.streak-timer {
+    font-size: 1.8em;
+    margin: 15px 0;
+    font-weight: bold;
+    color: gold;
+}
+
+.streak-btn, .audio-btn {
+    padding: 12px 20px;
+    background: gold;
+    color: black;
+    font-size: 1em;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    border: none;
+    transition: 0.3s;
+}
+
+.streak-btn:hover, .audio-btn:hover {
+    transform: scale(1.05);
+    background: #ffe15d;
+}
+
+/* ---------------------- */
+/* FOOTER DESIGN */
+/* ---------------------- */
+
+.footer {
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(8px);
+    padding: 50px 20px;
+    margin-top: 40px;
+    color: white;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-box {
+    width: 250px;
+    text-align: center;
+}
+
+.footer-box h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: gold;
+}
+
+.footer-box p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-btn {
+    width: 45px;
+    height: 45px;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1.4em;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.social-btn:hover {
+    background: gold;
+    color: black;
+    transform: scale(1.15);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+/* USER PROFILE CARD */
+.profile-card {
+    width: 300px;
+    background: rgba(255,255,255,0.15);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    color: white;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    margin: 30px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+
+.profile-avatar {
+    font-size: 5em;
+    margin-bottom: 15px;
+}
+
+.profile-card h2 {
+    margin: 10px 0;
+    font-size: 2em;
+}
+
+.profile-card p {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+
+</style>
+
+<!-- ADD THIS SCRIPT AT THE END OF YOUR BODY -->
+<script>
+
+let startTime;
+
+function startStreak() {
+    startTime = new Date();
+
+    setInterval(() => {
+        let now = new Date();
+        let diff = now - startTime;
+
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        let minutes = Math.floor((diff / (1000 * 60)) % 60);
+        let seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("streakTimer").innerText =
+            `${days} Days : ${hours} Hours : ${minutes} Minutes : ${seconds} Seconds`;
+    }, 1000);
+}
+
+function playMotivation() {
+    let audio = document.getElementById("motivationAudio");
+    audio.play();
+}
+
+</script>
+
+<!-- USER PROFILE CARD -->
+<div class="profile-card">
+    <div class="profile-avatar">👤</div>
+    <h2 id="userName">Ramesh singh</h2>
+    <p><strong>Age:</strong> <span id="userAge">25</span></p>
+    <p><strong>Goal:</strong> <span id="userGoal">Quit Smoking</span></p>
+</div>
+
+
+<!-- 🌟 FOOTER SECTION -->
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-box">
+            <h3>About Us</h3>
+            <p>
+                We help you break bad habits using psychology, routines,
+                and smart tracking tools. Start building a better version of yourself today.
+            </p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+            <p>Email : support@habitchange.com</p>
+            <p>Phone : +91 9520719718</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Follow Us</h3>
+
+            <div class="social-icons">
+                <a href="http://127.0.0.1:5500/projectccourse.html#" class="social-btn">🌐</a>
+                <a href="https://www.linkedin.com/feed/" class="social-btn">📘</a>
+                <a href="https://www.linkedin.com/feed/" class="social-btn">📸</a>
+            </div>
+        </div>
+
+    </div>
+
+    <p class="footer-bottom">© 2025 HabitFix. All Rights Reserved.</p>
+</footer>
+
+
+
+
+</body>
+</html>
